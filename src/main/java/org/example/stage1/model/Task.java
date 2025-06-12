@@ -10,10 +10,12 @@ public class Task {
     private boolean completed;
     private LocalDateTime creationDate;
 
-    public Task(String titulo, String descricao) {
+    public Task(){}
+
+    public Task(String title, String description) {
         this.id = UUID.randomUUID();
-        this.title = titulo;
-        this.description = descricao;
+        this.title = title;
+        this.description = description;
         this.completed = false;
         this.creationDate = LocalDateTime.now();
     }
