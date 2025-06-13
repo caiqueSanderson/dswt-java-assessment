@@ -47,7 +47,7 @@ public class App {
                 repository.findById(id)
                         .ifPresentOrElse(
                                 task -> context.json(task),
-                                () -> context.status(404).result("Tarefa não encontrada.")
+                                () -> context.status(404).result("Tarefa não encontrada")
                         );
             }catch (IllegalArgumentException e){
                 context.status(400).result("ID inválido");
