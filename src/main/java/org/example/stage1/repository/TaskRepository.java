@@ -21,4 +21,25 @@ public class TaskRepository {
     public Optional<Task> findById(UUID id) {
         return tasks.stream().filter(t -> t.getId().equals(id)).findFirst();
     }
+
+    public boolean update(UUID id, String title, String description, boolean completed) {
+        return findById(id).map(task -> {
+            task.setTitle(title);
+            task.setDescription(description);
+            task.setCompleted(completed);
+            return true;
+        }).orElse(false);
+
+    }
+
+    public boolean markAsCompleted(UUID id) {
+        return findById(id).map(task -> {
+            task.setCompleted(true);
+            return true;
+        }).orElse(false);
+    }
+
+    public boolean remove(UUID id) {
+        return tasks.removeIf(task -> task.getId().equals(id));
+    }
 }
