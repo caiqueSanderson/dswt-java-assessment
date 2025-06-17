@@ -12,6 +12,25 @@ public class Main {
         TaskRepository repository = new TaskRepository();
         Javalin app = Javalin.create().start(7000);
 
+        app.get("/", context -> {
+            context.json(new Object() {
+                public final String message = "Bem-vindo à Task API! Lista de endpoints disponíveis:";
+                public final Endpoint[] endpoints = {
+                        new Endpoint("GET", "/hello", "Retorna uma mensagem simples de teste."),
+                        new Endpoint("GET", "/status", "Verifica se a API está online, com timestamp atual."),
+                        new Endpoint("POST", "/echo", "Recebe uma string no corpo e retorna essa mesma string."),
+                        new Endpoint("GET", "/saudacao/{name}", "Retorna uma saudação personalizada com o nome informado."),
+                        new Endpoint("POST", "/tarefas", "Cria uma nova tarefa."),
+                        new Endpoint("GET", "/tarefas", "Lista todas as tarefas. Se não houver, retorna mensagem informando."),
+                        new Endpoint("GET", "/tarefas/{id}", "Busca uma tarefa específica pelo ID."),
+                        new Endpoint("PUT", "/tarefas/{id}", "Atualiza uma tarefa específica pelo ID."),
+                        new Endpoint("PATCH", "/tarefas/{id}/concluida", "Marca uma tarefa como concluída."),
+                        new Endpoint("DELETE", "/tarefas/{id}", "Remove uma tarefa específica pelo ID.")
+                };
+            });
+        });
+
+
         app.get("/hello", context -> {
             context.contentType("text/plain; charset=UTF-8");
             context.result("Hello, Javalin!");
@@ -112,6 +131,7 @@ public class Main {
         });
     }
 
+    record Endpoint(String method, String path, String description) {}
     record StatusResponse(String status, String timestamp){}
     record GreetingResponse(String message) {}
     record ListEmptyResponse(String message, Object tasks) {}
