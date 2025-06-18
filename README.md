@@ -79,7 +79,7 @@ Se houver tarefas:
     "title": "Estudar Java",
     "description": "Fazer os exercícios de Javalin",
     "completed": false,
-    "createdAt": "2025-06-15T16:40:00"
+    "creationDate": "2025-06-15T16:40:00"
   }
 ]
 ```
