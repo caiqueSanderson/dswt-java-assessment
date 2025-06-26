@@ -27,7 +27,7 @@ public class TaskApiClient {
         HttpURLConnection conn = (HttpURLConnection) url.openConnection();
         conn.setRequestMethod("POST");
         conn.setRequestProperty("Content-Type","application/json");
-        conn.setDoInput(true);
+        conn.setDoOutput(true);
 
         try (OutputStream os = conn.getOutputStream()) {
             os.write(json.getBytes(StandardCharsets.UTF_8));

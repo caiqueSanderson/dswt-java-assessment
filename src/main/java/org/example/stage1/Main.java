@@ -71,7 +71,7 @@ public class Main {
             }
         });
 
-        app.get("tarefas/{id}", context -> {
+        app.get("/tarefas/{id}", context -> {
             try{
                 UUID id = UUID.fromString(context.pathParam("id"));
                 repository.findById(id)
